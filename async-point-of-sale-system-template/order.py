@@ -1,6 +1,4 @@
 import asyncio
-from nis import cat
-from sre_constants import SUCCESS
 from combo import Combo
 
 class Order:

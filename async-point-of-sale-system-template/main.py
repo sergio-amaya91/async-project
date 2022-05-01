@@ -1,5 +1,4 @@
 import asyncio
-from re import sub
 from inventory import Inventory
 from order import Order
 
@@ -77,11 +76,15 @@ def display_order(order, sub_total, tax, total):
     print(f"\nSubtotal: ${round(sub_total, 2)}")
     print(f"\nTax: ${round(tax, 2)}")
     print(f"\nTotal: ${round(total, 2)}")
-    
 
 
-def purchase_order():
-    pass    
+
+def purchase_order(total):
+    answer = input(f"Would you like to purchase this order for ${round(total, 2)} (yes/no)?").lower()
+    if answer in ["y", "yes"]:
+        print("Thank you for your order!")
+    else:
+        print("No problem, please come again!")        
 
 
 
@@ -92,7 +95,7 @@ async def main():
 
     inventory = Inventory()
 
-    num_items_task = asyncio.create_task(inventory.get_number_of_items)
+    num_items_task = asyncio.create_task(inventory.get_number_of_items())
 
     print("Loading the catalogue")
     catalogue = await inventory.get_catalogue()
